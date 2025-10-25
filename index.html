@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio | Interactive Version</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Header with Theme Toggle -->
+    <header>
+        <nav class="navbar">
+            <div class="nav-brand">
+                <h1>My Portfolio</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="nav-controls">
+                <button id="theme-toggle" class="theme-btn" aria-label="Toggle dark mode">
+                    <span class="theme-icon">🌙</span>
+                </button>
+            </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section with Personalized Greeting -->
+    <section id="home" class="hero section active">
+        <div class="hero-content">
+            <div class="greeting-container">
+                <h1 id="personalized-greeting">Hello there!</h1>
+                <p id="greeting-subtitle">Welcome to my interactive portfolio</p>
+            </div>
+            <div class="hero-image">
+                <div class="image-placeholder">Your Photo</div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll to explore</span>
+            <div class="arrow"></div>
+        </div>
+    </section>
+
+    <!-- About Section with Expandable Content -->
+    <section id="about" class="about section">
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <div class="skills-section">
+                    <h3>Skills & Expertise</h3>
+                    <div class="skills-container">
+                        <div class="skill-category">
+                            <button class="expand-btn" data-target="frontend-skills">
+                                Frontend Development
+                                <span class="expand-icon">+</span>
+                            </button>
+                            <div id="frontend-skills" class="expandable-content">
+                                <ul>
+                                    <li>HTML5, CSS3, JavaScript</li>
+                                    <li>React, Vue.js</li>
+                                    <li>Responsive Design</li>
+                                    <li>CSS Frameworks (Bootstrap, Tailwind)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <button class="expand-btn" data-target="backend-skills">
+                                Backend Development
+                                <span class="expand-icon">+</span>
+                            </button>
+                            <div id="backend-skills" class="expandable-content">
+                                <ul>
+                                    <li>Node.js, Express</li>
+                                    <li>Python, Django</li>
+                                    <li>Database Design (SQL, MongoDB)</li>
+                                    <li>RESTful APIs</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section with Filtering and Search -->
+    <section id="projects" class="projects section">
+        <div class="container">
+            <h2>My Projects</h2>
+            
+            <!-- Project Controls -->
+            <div class="project-controls">
+                <div class="search-container">
+                    <input type="text" id="project-search" placeholder="Search projects..." class="search-input">
+                </div>
+                <div class="filter-container">
+                    <select id="project-filter" class="filter-select">
+                        <option value="all">All Projects</option>
+                        <option value="web">Web Development</option>
+                        <option value="mobile">Mobile Apps</option>
+                        <option value="design">UI/UX Design</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="sort-container">
+                    <button id="sort-date" class="sort-btn active" data-sort="date">Sort by Date</button>
+                    <button id="sort-name" class="sort-btn" data-sort="name">Sort by Name</button>
+                </div>
+            </div>
+
+            <!-- Projects Grid -->
+            <div id="projects-grid" class="projects-grid">
+                <!-- Projects will be dynamically loaded here -->
+                <div class="loading-spinner" id="loading-spinner">Loading projects...</div>
+            </div>
+
+            <!-- Empty State -->
+            <div id="empty-state" class="empty-state hidden">
+                <p>No projects found matching your criteria.</p>
+                <button id="reset-filters" class="btn-primary">Reset Filters</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section with Form Validation -->
+    <section id="contact" class="contact section">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <div class="contact-item">
+                        <strong>Email:</strong>
+                        <span>your.email@example.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <strong>Location:</strong>
+                        <span>Your City, Country</span>
+                    </div>
+                </div>
+                
+                <form id="contact-form" class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name *</label>
+                        <input type="text" id="name" name="name" required>
+                        <span class="error-message" id="name-error"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required>
+                        <span class="error-message" id="email-error"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                        <span class="error-message" id="message-error"></span>
+                    </div>
+                    
+                    <button type="submit" class="btn-primary" id="submit-btn">
+                        Send Message
+                    </button>
+                    
+                    <div id="form-message" class="form-message hidden"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 My Portfolio. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
